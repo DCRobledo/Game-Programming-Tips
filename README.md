@@ -135,7 +135,7 @@ En este repositorio, encontrarás ejemplos de código relacionados con los sigui
 > **Los Behavior Trees son una herramienta que nos permite generar comportamientos de Inteligencias Artificiales de una forma visual y flexible.**
 - **Ejemplo proporcionado**: Implementación de una IA acompañante.
 
-### 24\. [Programación Orientada a Objectos]
+### 24\. [Programación Orientada a Objectos](https://twitter.com/dc_robledo/status/1698244524223471873)
 
 > **La Programación Orientada a Objectos (POO) es un paradigma que se basa en dividir la jerarquia de un juego en elementos simples, de forma que el conjunto sea modular, flexible y entendible.**
 - **Ejemplo proporcionado**: Ejemplificación de los conceptos fundamentales de la POO (Clases y Objetos, Encapsulación, Herencia y Polimorfismo).
