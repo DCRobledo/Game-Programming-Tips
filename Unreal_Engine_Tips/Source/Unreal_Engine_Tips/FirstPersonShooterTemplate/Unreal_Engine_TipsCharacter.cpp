@@ -42,6 +42,7 @@ void AUnreal_Engine_TipsCharacter::BeginPlay()
 	// Call the base class  
 	Super::BeginPlay();
 
+	m_PlasmidComponent = Cast<UPlasmidComponent>(GetComponentByClass(UPlasmidComponent::StaticClass()));
 }
 
 //////////////////////////////////////////////////////////////////////////// Input
@@ -78,6 +79,11 @@ void AUnreal_Engine_TipsCharacter::OnPrimaryAction()
 {
 	// Trigger the OnItemUsed Event
 	OnUseItem.Broadcast();
+
+	if(m_PlasmidComponent != nullptr)
+	{
+		m_PlasmidComponent->Fire();
+	}
 }
 
 void AUnreal_Engine_TipsCharacter::BeginTouch(const ETouchIndex::Type FingerIndex, const FVector Location)

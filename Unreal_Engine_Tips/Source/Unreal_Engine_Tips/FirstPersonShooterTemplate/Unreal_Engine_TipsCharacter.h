@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include "Observer/PlasmidComponent.h"
 #include "Unreal_Engine_TipsCharacter.generated.h"
 
 class UInputComponent;
@@ -98,6 +99,10 @@ public:
 	USkeletalMeshComponent* GetMesh1P() const { return Mesh1P; }
 	/** Returns FirstPersonCameraComponent subobject **/
 	UCameraComponent* GetFirstPersonCameraComponent() const { return FirstPersonCameraComponent; }
+
+private:
+	UPROPERTY()
+	UPlasmidComponent* m_PlasmidComponent;
 
 };
 
