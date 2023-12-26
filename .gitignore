@@ -155,4 +155,11 @@ Plugins/
 # Cache files for the editor to use
 Unreal_Engine_Tips/DerivedDataCache/*
 
-.idea
+# Not code files
+Unreal_Engine_Tips/Content/*
+Unreal_Engine_Tips/Config/*
+
+*.idea
+*.uproject
+*.code-workspace
+*.png
