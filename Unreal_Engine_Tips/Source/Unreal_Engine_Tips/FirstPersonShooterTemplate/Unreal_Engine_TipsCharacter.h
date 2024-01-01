@@ -100,9 +100,12 @@ public:
 	/** Returns FirstPersonCameraComponent subobject **/
 	UCameraComponent* GetFirstPersonCameraComponent() const { return FirstPersonCameraComponent; }
 
+#pragma region Plasmid
+	
 private:
 	UPROPERTY()
 	UPlasmidComponent* m_PlasmidComponent;
 
-};
+#pragma endregion 
 
+};

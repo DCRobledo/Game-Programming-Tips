@@ -80,7 +80,7 @@ void AUnreal_Engine_TipsCharacter::OnPrimaryAction()
 	// Trigger the OnItemUsed Event
 	OnUseItem.Broadcast();
 
-	if(m_PlasmidComponent != nullptr)
+	if (m_PlasmidComponent != nullptr)
 	{
 		m_PlasmidComponent->Fire();
 	}
