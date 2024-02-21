@@ -140,4 +140,30 @@ En este repositorio, encontrarás ejemplos de código relacionados con los sigui
 > **La Programación Orientada a Objectos (POO) es un paradigma que se basa en dividir la jerarquia de un juego en elementos simples, de forma que el conjunto sea modular, flexible y entendible.**
 - **Ejemplo proporcionado**: Ejemplificación de los conceptos fundamentales de la POO (Clases y Objetos, Encapsulación, Herencia y Polimorfismo).
 
+### XX\. [Lambdas en Unreal Engine]()
+
+> **Las lambdas son trozos de codigo que hacen cosas concretas sin ser declaradas. Son utiles para implementar funciones anonimas que se usan una sola vez**
+- **Ejemplo proporcionado**: Implementación de un actor que se esconde automaticamente.
+
+### XX\. [Timers en Unreal Engine]()
+
+> **Los timers son la forma que tiene Unreal de lanzar rutinas personalizadas. Estas permiten ejecutar codigo en bucle o despues de un tiempo concreto.**
+- **Ejemplo proporcionado**: Implementación de un powerup de invencibilidad.
+
+### XX\. [Delegados en Unreal Engine]()
+
+> **Los delegados son una implementación del patrón observer dentro de Unreal Engine. La idea es conectar un observador a un notificador y cuando el estado de este último cambie, tambien cambien los observadores.**
+- **Ejemplo proporcionado**: Implementación de un sistema de puntuación al matar enemigos.
+
+### XX\. [Animation Blueprints]()
+
+> **Los animation blueprint son una forma visual y escalable de implementar la gestión de animaciones dentro de Unreal Engine. Con ellos podemos definir maquinas de estado, transiciones y modificaciones dinamicas del personaje que la contenga.**
+- **Ejemplo proporcionado**: Implementación de un movimiento en tercera persona basico.
+
+### XX\. [Colisiones en Unreal Engine]()
+
+> **Las colisiones en Unreal Engine se basan en tipos, respuestas y canales. La idea es tener control total sobre que y como detecta colisiones**
+- **Ejemplo proporcionado**: Ejemplos de todos los tipos y respuestas posibles.
+
+
 ¡No dudes en explorar los ejemplos de código proporcionados en este repositorio y seguirme en [Twitter](https://twitter.com/dc_robledo) para obtener más hilos semanales de programación y diseño de videojuegos. Si tienes alguna pregunta o sugerencia, no dudes en contactarme.
