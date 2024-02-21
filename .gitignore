@@ -163,3 +163,9 @@ Unreal_Engine_Tips/Config/*
 *.uproject
 *.code-workspace
 *.png
+
+Unity_Tips/Assets/Materials/*
+Unity_Tips/Assets/Scenes/*
+
+Materials.meta
+Scenes.meta

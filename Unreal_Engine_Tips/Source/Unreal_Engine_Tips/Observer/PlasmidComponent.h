@@ -2,10 +2,11 @@
 
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
-#include "Components/BoxComponent.h"
 #include "PlasmidComponent.generated.h"
 
 DECLARE_MULTICAST_DELEGATE_TwoParams(FOnEVEModified, float, float);
+
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FEVERegenerationTest, "PlasmidTests.EVETests.EVE Max Limit", EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
 
 UCLASS(Blueprintable, BlueprintType, ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class UNREAL_ENGINE_TIPS_API UPlasmidComponent : public UActorComponent
@@ -44,23 +45,28 @@ protected:
 #pragma region EVEManagement
 
 public:
+	UFUNCTION()
+	void RegenerateEVE();
+	
 	FORCEINLINE FOnEVEModified& OnEVEModified() { return m_OnEVEModified; }
 
+	FORCEINLINE float GetCurrentEVE() const { return m_CurrentEVE; }
+	FORCEINLINE float GetMaxEVE() const { return m_MaxEVE; }
+
+	FORCEINLINE void SetEVERegeneratedPerSecond(float EVERegeneratedPerSecond) { m_EVERegeneratedPerSecond = EVERegeneratedPerSecond; }
+
 protected:
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	float m_MaxEVE = 100.f;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="EVE", DisplayName="Max EVE", meta=(AllowPrivateAccess=true))
+	float m_MaxEVE = 100.0f;
 	UPROPERTY(VisibleAnywhere)
 	float m_CurrentEVE = 0.0f;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	float m_EVERegeneratedPerSecond = 5.f;
+	float m_EVERegeneratedPerSecond = 10.f;
 		
 private:
 	FOnEVEModified m_OnEVEModified;
 	
 	FTimerHandle m_EVERegenerationHandle;
-	
-	UFUNCTION()
-	void RegenerateEVE();
 	
 	void NotifyEVEModified() const;
 	
@@ -72,7 +78,7 @@ private:
 	TSubclassOf<class UPlasmidHUD> m_PlasmidHUDClass;
 
 	UPROPERTY()
-	class UPlasmidHUD* m_PlasmidHUD;
+	UPlasmidHUD* m_PlasmidHUD;
 	
 #pragma endregion 
 		

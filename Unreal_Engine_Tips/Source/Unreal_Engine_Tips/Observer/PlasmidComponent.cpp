@@ -4,6 +4,8 @@
 #include "PlasmidHUD.h"
 #include "UserWidget.h"
 #include "Kismet/GameplayStatics.h"
+#include "Misc/AutomationTest.h"
+#include "Tests/AutomationEditorCommon.h"
 
 UPlasmidComponent::UPlasmidComponent()
 {
@@ -16,7 +18,7 @@ void UPlasmidComponent::BeginPlay()
 
 	m_Owner = GetOwner();
 	
-	m_CurrentEVE = m_MaxEVE;
+	m_CurrentEVE = 100.f;
 	GetWorld()->GetTimerManager().SetTimer(m_EVERegenerationHandle, this, &UPlasmidComponent::RegenerateEVE, 1.0f, true);
 
 	m_PlasmidHUD = CreateWidget<UPlasmidHUD>(UGameplayStatics::GetPlayerController(GetWorld(), 0), m_PlasmidHUDClass);
@@ -38,7 +40,7 @@ void UPlasmidComponent::EndPlay(const EEndPlayReason::Type EndPlayReason)
 
 void UPlasmidComponent::Fire()
 {
-	if(!m_IsOnCooldown)
+	if (!m_IsOnCooldown)
 	{
 		const float EVECost = m_PlasmidActorClass.GetDefaultObject()->GetEveCost();
 		if(m_CurrentEVE >= EVECost)
@@ -48,6 +50,8 @@ void UPlasmidComponent::Fire()
 
 			m_CurrentEVE -= EVECost;
 			NotifyEVEModified();
+
+			GetWorld()->GetTimerManager().UnPauseTimer(m_EVERegenerationHandle);
 		}
 
 		m_IsOnCooldown = true;
@@ -66,6 +70,7 @@ void UPlasmidComponent::Fire()
 void UPlasmidComponent::OnCooldownEnds()
 {
 	m_IsOnCooldown = false;
+	
 }
 
 #pragma endregion
@@ -74,10 +79,17 @@ void UPlasmidComponent::OnCooldownEnds()
 
 void UPlasmidComponent::RegenerateEVE()
 {
-	const float newEVE = m_CurrentEVE + m_EVERegeneratedPerSecond;
+	const float newEVE = m_CurrentEVE += m_EVERegeneratedPerSecond;
+	
 	if(newEVE <= m_MaxEVE)
 	{
 		m_CurrentEVE = newEVE;
+	}
+	else
+	{
+		m_CurrentEVE = m_MaxEVE;
+
+		GetWorld()->GetTimerManager().PauseTimer(m_EVERegenerationHandle);
 	}
 
 	NotifyEVEModified();
@@ -85,10 +97,33 @@ void UPlasmidComponent::RegenerateEVE()
 
 void UPlasmidComponent::NotifyEVEModified() const
 {
-	if(m_OnEVEModified.IsBound())
+	if (m_OnEVEModified.IsBound())
 	{
 		m_OnEVEModified.Broadcast(m_CurrentEVE, m_MaxEVE);
 	}
+}
+
+bool FEVERegenerationTest::RunTest(const FString& Parameters)
+{
+	// // Create humble plasmid component
+	// UWorld* humbleWorld = FAutomationEditorCommonUtils::CreateNewMap();
+	// AActor* humbleActor = humbleWorld->SpawnActor(AActor::StaticClass());
+	// UPlasmidComponent* humblePlasmidComponent = humbleActor->CreateDefaultSubobject<UPlasmidComponent>(TEXT("Plasmid Component"));
+	//
+	// // Set a great EVE regeneration
+	// humblePlasmidComponent->SetEVERegeneratedPerSecond(BIG_NUMBER);
+	// humblePlasmidComponent->RegenerateEVE();
+	//
+	// // Destroy humble world
+	// humbleWorld->DestroyWorld(false);
+	//
+	// // Check that the currentEVE didn't surpass the maximum
+	// const float currentEVE = humblePlasmidComponent->GetCurrentEVE();
+	// const float maxEVE = humblePlasmidComponent->GetMaxEVE();
+	//
+	// return currentEVE <= maxEVE;
+	
+	return false;
 }
 
 #pragma endregion
