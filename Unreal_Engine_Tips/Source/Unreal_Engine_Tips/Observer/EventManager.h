@@ -48,10 +48,20 @@ public:
 		const Listener listener(listenerOwner, *((uint64*)&listenerFunction), onCallback);
 		AddListener(eventType, listener);
 	}
-	
-	static void RemoveListener(E_EventType eventType, const Listener& listener);
+
+	template <typename UserClass, typename std::enable_if<std::is_base_of<UObject, UserClass>::value, void** >::type = nullptr>
+	static void RemoveListener(E_EventType eventType, UserClass* listenerOwner, typename TMemFunPtrType<false, UserClass, void(E_EventType, const int32)>::Type listenerFunction)
+	{
+		FOnCallback onCallback;
+		onCallback.BindUObject(listenerOwner, listenerFunction);
+
+		const Listener listener(listenerOwner, *((uint64*)&listenerFunction), onCallback);
+		RemoveListener(eventType, listener);
+	}
 	static void SendEvent(E_EventType eventType, const int32 intParam);
 
 private:
 	static void AddListener(E_EventType eventType, const Listener& listener);
+	static void RemoveListener(E_EventType eventType, const Listener& listener);
+
 };
