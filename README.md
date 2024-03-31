@@ -165,5 +165,9 @@ En este repositorio, encontrarás ejemplos de código relacionados con los sigui
 > **Las colisiones en Unreal Engine se basan en tipos, respuestas y canales. La idea es tener control total sobre que y como detecta colisiones**
 - **Ejemplo proporcionado**: Ejemplos de todos los tipos y respuestas posibles.
 
+### 30\. [Unreal Engine Subsystems]
+
+> **Los Subsystems en Unreal Engine son extensiones del motor encapsuladas y con un ciclo de vida ya gestionada por el mismo.**
+- **Ejemplo proporcionado**: Ejemplo de implementación de un subsystem para las estadisticas del jugador.
 
 ¡No dudes en explorar los ejemplos de código proporcionados en este repositorio y seguirme en [Twitter](https://twitter.com/dc_robledo) para obtener más hilos semanales de programación y diseño de videojuegos. Si tienes alguna pregunta o sugerencia, no dudes en contactarme.
